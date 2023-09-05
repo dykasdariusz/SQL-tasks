@@ -1,0 +1,69 @@
+Oto 10 przykładowych zadań z SQL wykorzystujących różne wyrażenia oraz operatory logiczne:
+
+1. Wybierz wszystkie kolumny z tabeli "Pracownicy":
+```sql
+SELECT * FROM Pracownicy;
+```
+
+2. Wybierz imię i nazwisko pracowników z tabeli "Pracownicy" gdzie pensja jest większa niż 50000:
+```sql
+SELECT Imie, Nazwisko FROM Pracownicy WHERE Pensja > 50000;
+```
+
+3. Wybierz imię, nazwisko i średnią pensję pracowników z tabeli "Pracownicy" grupując wyniki po dziale, ale wyłącznie dla działów o nazwie "Sprzedaż" lub "Marketing":
+```sql
+SELECT Dzial, Imie, Nazwisko, AVG(Pensja) AS SredniaPensja
+FROM Pracownicy
+WHERE Dzial IN ('Sprzedaż', 'Marketing')
+GROUP BY Dzial, Imie, Nazwisko;
+```
+
+4. Wybierz imię i nazwisko pracowników z tabeli "Pracownicy" gdzie imię zaczyna się od litery "A":
+```sql
+SELECT Imie, Nazwisko FROM Pracownicy WHERE Imie LIKE 'A%';
+```
+
+5. Wybierz imię, nazwisko i sumę pensji dla pracowników z tabeli "Pracownicy" którzy pracują w dziale "Finanse" i zarabiają co najmniej 60000:
+```sql
+SELECT Imie, Nazwisko, SUM(Pensja) AS SumaPensji
+FROM Pracownicy
+WHERE Dzial = 'Finanse' AND Pensja >= 60000;
+```
+
+6. Wybierz imię, nazwisko i maksymalny wiek pracowników z tabeli "Pracownicy" którzy pracują w dziale "IT" lub "Obsługa klienta":
+```sql
+SELECT Imie, Nazwisko, MAX(Wiek) AS MaksymalnyWiek
+FROM Pracownicy
+WHERE Dzial IN ('IT', 'Obsługa klienta');
+```
+
+7. Wybierz imię, nazwisko i ilość zamówień dla klientów z tabeli "Klienci" którzy złożyli co najmniej 5 zamówień:
+```sql
+SELECT Imie, Nazwisko, COUNT(ZamowienieID) AS IloscZamowien
+FROM Klienci
+GROUP BY Imie, Nazwisko
+HAVING COUNT(ZamowienieID) >= 5;
+```
+
+8. Wybierz imię, nazwisko i średni wiek pracowników z tabeli "Pracownicy" którzy pracują w dziale "Produkcja" lub "Logistyka" i mają wiek między 30 a 40 lat:
+```sql
+SELECT Imie, Nazwisko, AVG(Wiek) AS SredniWiek
+FROM Pracownicy
+WHERE Dzial IN ('Produkcja', 'Logistyka') AND Wiek BETWEEN 30 AND 40;
+```
+
+9. Wybierz imię i nazwisko pracowników z tabeli "Pracownicy" którzy pracują w dziale "HR" lub "Administracja" i zarabiają co najmniej 55000 lub mają stanowisko "Kierownik":
+```sql
+SELECT Imie, Nazwisko
+FROM Pracownicy
+WHERE (Dzial = 'HR' OR Dzial = 'Administracja') AND (Pensja >= 55000 OR Stanowisko = 'Kierownik');
+```
+
+10. Wybierz imię, nazwisko i minimalną pensję pracowników z tabeli "Pracownicy" którzy pracują w dziale "Sprzedaż" lub "Marketing" i mają co najmniej 3 lata stażu:
+```sql
+SELECT Imie, Nazwisko, MIN(Pensja) AS MinimalnaPensja
+FROM Pracownicy
+WHERE Dzial IN ('Sprzedaż', 'Marketing') AND Staz >= 3;
+```
+
+Mam nadzieję, że te przykładowe zadania pomogą w zrozumieniu różnych wyrażeń i operacji w języku SQL.
